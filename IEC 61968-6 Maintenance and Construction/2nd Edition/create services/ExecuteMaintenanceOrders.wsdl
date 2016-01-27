@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://iec.ch/TC57/2015/ExecuteMaintenanceOrders" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:infoMessage="http://iec.ch/TC57/2015/MaintenanceOrdersMessage" name="ExecuteMaintenanceOrders" targetNamespace="http://iec.ch/TC57/2015/ExecuteMaintenanceOrders">
+<xs:annotation>
+	<xs:documentation>
+	// Copyright (c) 2015, Electric Power Research Institute
+// All rights reserved
+// Redistribution and use in source and bunary forms, with or without modification, are permitted provided that the following conditions are met:
+// 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the aboev copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+// 3. Neither the name of the copyright holder nor the name of its contributors may be used to endorse or promote products derived from this software without specific prior written permission
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRENTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRENTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THISE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	</xs:documentation>
+</xs:annotation>
+	<wsdl:types>
+		<xs:schema targetNamespace="http://iec.ch/TC57/2015/ExecuteMaintenanceOrders" elementFormDefault="qualified">
+			<xs:import namespace="http://iec.ch/TC57/2015/MaintenanceOrdersMessage" schemaLocation="xsd/MaintenanceOrdersMessage.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="CreateMaintenanceOrdersRequestMessage">
+		<wsdl:part name="CreateMaintenanceOrdersRequestMessage" element="infoMessage:CreateMaintenanceOrders"/>
+	</wsdl:message>
+	<wsdl:message name="ResponseMessage">
+		<wsdl:part name="ResponseMessage" element="infoMessage:MaintenanceOrdersResponseMessage"/>
+	</wsdl:message>
+	<wsdl:message name="FaultMessage">
+		<wsdl:part name="FaultMessage" element="infoMessage:MaintenanceOrdersFaultMessage"/>
+	</wsdl:message>
+	<wsdl:portType name="MaintenanceOrders_Port">
+		<wsdl:operation name="CreateMaintenanceOrders">
+			<wsdl:input name="CreateMaintenanceOrdersRequest" message="tns:CreateMaintenanceOrdersRequestMessage"/>
+			<wsdl:output name="CreateMaintenanceOrdersResponse" message="tns:ResponseMessage"/>
+			<wsdl:fault name="CreateMaintenanceOrdersFault" message="tns:FaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="MaintenanceOrders_Binding" type="tns:MaintenanceOrders_Port">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CreateMaintenanceOrders">
+			<soap:operation soapAction="http://iec.ch/TC57/2015/MaintenanceOrders/CreateMaintenanceOrders" style="document"/>
+			<wsdl:input name="CreateMaintenanceOrdersRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="CreateMaintenanceOrdersResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="CreateMaintenanceOrdersFault">
+				<soap:fault name="CreateMaintenanceOrdersFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ExecuteMaintenanceOrders">
+		<wsdl:port name="MaintenanceOrders_Port" binding="tns:MaintenanceOrders_Binding">
+			<soap:address location="http://iec.ch/TC57/2015/ExecuteMaintenanceOrders"/>
+		</wsdl:port>
+	</wsdl:service>
+	<xs:schema targetNamespace="http://iec.ch/TC57/2015/ExecuteMaintenanceOrdersMessage" elementFormDefault="qualified">
+		<xs:import namespace="http://iec.ch/TC57/2015/MaintenanceOrdersMessage" schemaLocation="xsd/MaintenanceOrdersMessage.xsd"/>
+		<!--<xs:include schemaLocation="xsd/MaintenanceOrdersMessage.xsd"/>-->
+	</xs:schema>
+	<!-- Message Definitions -->
+	<!-- Port Definitions -->
+</wsdl:definitions>
